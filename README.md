@@ -42,7 +42,7 @@ My live portfolio is hosted via GitHub Pages:
 - **GitHub:** [FarhanRana234](https://github.com/FarhanRana234)  
 - **Instagram:** [farhan_.rana](https://instagram.com/farhan_.rana)  
 - **Indeed:** [Farhan Rana](https://www.indeed.com/rana.tdm@gmail.com/Farhan-Rana)  
-- **LinkedIn:** [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
+- **LinkedIn:**
 
 ---
 
