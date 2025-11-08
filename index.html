@@ -170,15 +170,32 @@
     });
   </script>
 
-  <!-- GitHub Projects -->
+  <!-- GitHub Projects + AI Resume Critiquer -->
   <script>
     const githubUser = 'FarhanRana234';
     const container = document.getElementById('github-projects');
 
+    // First, add AI Resume Critiquer manually
+    const aiCard = document.createElement('div');
+    aiCard.className = 'project-card bg-white dark:bg-gray-700';
+    aiCard.innerHTML = `
+      <div class="p-6 text-gray-900 dark:text-gray-100">
+        <h3 class="font-bold text-2xl mb-2">AI Resume Critiquer</h3>
+        <p class="mb-4">
+          An AI-powered tool that analyzes resumes and provides personalized feedback using OpenAI GPT models.
+        </p>
+        <p class="mb-4 text-gray-500 dark:text-gray-300">⭐ 0 | Forks: 0</p>
+        <a href="https://github.com/FarhanRana234/ML_and_AI_Projects/tree/main/AI_Resume_Critiquer" target="_blank" class="project-link">View Repo</a>
+        <a href="https://mlandaiprojects-mfly48sl7xfezuvim6ilj4.streamlit.app/" target="_blank" class="project-link ml-4 text-green-500">Live Demo</a>
+      </div>
+    `;
+    container.appendChild(aiCard);
+
+    // Then fetch the rest of GitHub repos
     fetch(`https://api.github.com/users/${githubUser}/repos?sort=updated`)
       .then(res => res.json())
       .then(repos => {
-        repos.slice(0, 6).forEach(repo => {
+        repos.slice(0, 5).forEach(repo => { // slice 0,5 because AI Resume Critiquer is already added
           const card = document.createElement('div');
           card.className = 'project-card bg-white dark:bg-gray-700';
           card.innerHTML = `
@@ -193,7 +210,7 @@
         });
       })
       .catch(err => {
-        container.innerHTML = '<p class="text-center text-red-500">Failed to load projects.</p>';
+        container.innerHTML += '<p class="text-center text-red-500">Failed to load projects.</p>';
         console.error(err);
       });
   </script>
