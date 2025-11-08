@@ -150,7 +150,7 @@
         <a href="https://github.com/FarhanRana234" target="_blank">GitHub</a>
         <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
         <a href="mailto:rana.tdm@gmail.com">Email</a>
-        <a href="https://instagram.com/farhan_.rana_" target="_blank">Instagram</a>
+        <a href="https://instagram.com/farhan_.rana" target="_blank">Instagram</a>
         <a href="https://www.indeed.com/rana.tdm@gmail.com/Farhan-Rana" target="_blank">Indeed</a>
       </div>
     </div>
@@ -170,35 +170,44 @@
     });
   </script>
 
-  <!-- GitHub Projects + AI Resume Critiquer -->
+  <!-- GitHub Projects + Images -->
   <script>
     const githubUser = 'FarhanRana234';
     const container = document.getElementById('github-projects');
 
-    // First, add AI Resume Critiquer manually
+    // Map repo names to images
+    const repoImages = {
+      "AI_Resume_Critiquer": "Ai_resume.PNG",
+      // Add more images for other repos here
+    };
+
+    // Add AI Resume Critiquer card manually
     const aiCard = document.createElement('div');
     aiCard.className = 'project-card bg-white dark:bg-gray-700';
     aiCard.innerHTML = `
+      <img src="${repoImages["AI_Resume_Critiquer"]}" alt="AI Resume Critiquer Screenshot">
       <div class="p-6 text-gray-900 dark:text-gray-100">
         <h3 class="font-bold text-2xl mb-2">AI Resume Critiquer</h3>
         <p class="mb-4">
           An AI-powered tool that analyzes resumes and provides personalized feedback using OpenAI GPT models.
         </p>
         <p class="mb-4 text-gray-500 dark:text-gray-300">⭐ 0 | Forks: 0</p>
-        <a href="https://github.com/FarhanRana234/ML_and_AI_Projects/tree/main/Ai_resume_critiquer" target="_blank" class="project-link">View Repo</a>
-        <a href="https://mlandaiprojects-mfly48sl7xfezuvim6ilj4.streamlit.app/" target="_blank" class="project-link ml-4 text-green-500">Live Demo</a>
+        <a href="https://github.com/FarhanRana234/ML_and_AI_Projects/tree/main/AI_Resume_Critiquer" target="_blank" class="project-link">View Repo</a>
+        <a href="https://your-app-name.streamlit.app" target="_blank" class="project-link ml-4 text-green-500">Live Demo</a>
       </div>
     `;
     container.appendChild(aiCard);
 
-    // Then fetch the rest of GitHub repos
+    // Fetch other GitHub repos
     fetch(`https://api.github.com/users/${githubUser}/repos?sort=updated`)
       .then(res => res.json())
       .then(repos => {
-        repos.slice(0, 5).forEach(repo => { // slice 0,5 because AI Resume Critiquer is already added
+        repos.slice(0, 5).forEach(repo => {
+          if(repo.name === "AI_Resume_Critiquer") return; // skip duplicate
           const card = document.createElement('div');
           card.className = 'project-card bg-white dark:bg-gray-700';
           card.innerHTML = `
+            <img src="${repoImages[repo.name] || 'Ai_resume.PNG'}" alt="${repo.name} Screenshot">
             <div class="p-6 text-gray-900 dark:text-gray-100">
               <h3 class="font-bold text-2xl mb-2">${repo.name}</h3>
               <p class="mb-4">${repo.description || 'No description provided.'}</p>
