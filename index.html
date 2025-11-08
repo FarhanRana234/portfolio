@@ -171,63 +171,70 @@
   </script>
 
   <!-- GitHub Projects + Images -->
-  <script>
-    const githubUser = 'FarhanRana234';
-    const container = document.getElementById('github-projects');
+<script>
+  const githubUser = 'FarhanRana234';
+  const container = document.getElementById('github-projects');
 
-    // Map repo names to images
-    const repoImages = {
-  "AI_Resume_Critiquer": "images/Ai_resume.PNG",  // Already used in manual card
-  "ML_and_AI_Projects": "images/ml_project1.PNG",  // Updated extension to match actual file (PNG)
-  "Ml-Ai": "images/nlp_chatbot.png",  // Fixed case to match actual repo name ("Ml-Ai")
-  "Miracle-web": "images/miracle_web.png",  // Add this (upload miracle_web.png first)
-  "Miracle-web-2": "images/miracle_web_2.png",  // Add this (upload miracle_web_2.png first) //
-   "portfolio": "images/portfolio_image.png", 
-};
-      // Add more images for other repos here
+  // Map repo names to images
+  const repoImages = {
+    "AI_Resume_Critiquer": "images/Ai_resume.PNG",
+    "ML_and_AI_Projects": "images/ml_project1.PNG",
+    "Ml-Ai": "images/nlp_chatbot.png",
+    "Miracle-web": "images/miracle_web.png",
+    "Miracle-web-2": "images/miracle_web_2.png",
+    "portfolio": "images/portfolio_image.png",
+  };
 
-    // Add AI Resume Critiquer card manually
-    const aiCard = document.createElement('div');
-    aiCard.className = 'project-card bg-white dark:bg-gray-700';
-    aiCard.innerHTML = `
-      <img src="${repoImages["AI_Resume_Critiquer"]}" alt="AI Resume Critiquer Screenshot">
-      <div class="p-6 text-gray-900 dark:text-gray-100">
-        <h3 class="font-bold text-2xl mb-2">AI Resume Critiquer</h3>
-        <p class="mb-4">
-          An AI-powered tool that analyzes resumes and provides personalized feedback using OpenAI GPT models.
-        </p>
-        <p class="mb-4 text-gray-500 dark:text-gray-300">⭐ 0 | Forks: 0</p>
-        <a href="https://github.com/FarhanRana234/ML_and_AI_Projects/tree/main/AI_Resume_Critiquer" target="_blank" class="project-link">View Repo</a>
-        <a href="https://farhanrana234.streamlit.app/" target="_blank" class="project-link ml-4 text-green-500">Live Demo</a>
-      </div>
-    `;
-    container.appendChild(aiCard);
+  // Add AI Resume Critiquer card manually
+  const aiCard = document.createElement('div');
+  aiCard.className = 'project-card bg-white dark:bg-gray-700';
+  aiCard.innerHTML = `
+    <img src="${repoImages["AI_Resume_Critiquer"]}" alt="AI Resume Critiquer Screenshot">
+    <div class="p-6 text-gray-900 dark:text-gray-100">
+      <h3 class="font-bold text-2xl mb-2">AI Resume Critiquer</h3>
+      <p class="mb-4">
+        An AI-powered tool that analyzes resumes and provides personalized feedback using OpenAI GPT models.
+      </p>
+      <p class="mb-4 text-gray-500 dark:text-gray-300">Stars: 0 | Forks: 0</p>
+      <a href="https://github.com/FarhanRana234/ML_and_AI_Projects/tree/main/AI_Resume_Critiquer" target="_blank" class="project-link">View Repo</a>
+      <a href="https://farhanrana234.streamlit.app/" target="_blank" class="project-link ml-4 text-green-500">Live Demo</a>
+    </div>
+  `;
+  container.appendChild(aiCard);
 
-    // Fetch other GitHub repos
-    fetch(`https://api.github.com/users/${githubUser}/repos?sort=updated`)
-      .then(res => res.json())
-      .then(repos => {
-        repos.slice(0, 5).forEach(repo => {
-          if(repo.name === "AI_Resume_Critiquer") return; // skip duplicate
-          const card = document.createElement('div');
-          card.className = 'project-card bg-white dark:bg-gray-700';
-          card.innerHTML = `
-            <img src="${repoImages[repo.name] || 'https://via.placeholder.com/400x200'}" alt="${repo.name} Screenshot">
-            <div class="p-6 text-gray-900 dark:text-gray-100">
-              <h3 class="font-bold text-2xl mb-2">${repo.name}</h3>
-              <p class="mb-4">${repo.description || 'No description provided.'}</p>
-              <p class="mb-4 text-gray-500 dark:text-gray-300">⭐ ${repo.stargazers_count} | Forks: ${repo.forks_count}</p>
-              <a href="${repo.html_url}" target="_blank" class="project-link">View Repo</a>
-            </div>
-          `;
-          container.appendChild(card);
-        });
-      })
-      .catch(err => {
-        container.innerHTML += '<p class="text-center text-red-500">Failed to load projects.</p>';
-        console.error(err);
+  // Fetch other GitHub repos
+  fetch(`https://api.github.com/users/${githubUser}/repos?sort=updated`)
+    .then(res => res.json())
+    .then(repos => {
+      repos.slice(0, 5).forEach(repo => {
+        if (repo.name === "AI_Resume_Critiquer") return; // skip duplicate
+
+        const card = document.createElement('div');
+        card.className = 'project-card bg-white dark:bg-gray-700';
+        
+        // Special Live Demo button for Miracle-web
+        const liveDemoButton = repo.name === "Miracle-web" 
+          ? `<a href="https://farhanrana234.github.io/Miracle-web/" target="_blank" class="project-link ml-4 text-green-500">Live Demo</a>`
+          : '';
+
+        card.innerHTML = `
+          <img src="${repoImages[repo.name] || 'https://via.placeholder.com/400x200'}" alt="${repo.name} Screenshot">
+          <div class="p-6 text-gray-900 dark:text-gray-100">
+            <h3 class="font-bold text-2xl mb-2">${repo.name}</h3>
+            <p class="mb-4">${repo.description || 'No description provided.'}</p>
+            <p class="mb-4 text-gray-500 dark:text-gray-300">Stars: ${repo.stargazers_count} | Forks: ${repo.forks_count}</p>
+            <a href="${repo.html_url}" target="_blank" class="project-link">View Repo</a>
+            ${liveDemoButton}
+          </div>
+        `;
+        container.appendChild(card);
       });
-  </script>
+    })
+    .catch(err => {
+      container.innerHTML += '<p class="text-center text-red-500">Failed to load projects.</p>';
+      console.error(err);
+    });
+</script>
 
 </body>
 </html>
