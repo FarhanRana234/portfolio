@@ -23,7 +23,7 @@ Here are some of my latest projects. All are available on my GitHub:
 | Project | Description | Link |
 |---------|-------------|------|
 | AI Critiquer | AI tool to evaluate text and give suggestions | [GitHub](https://github.com/FarhanRana234/ML_and_AI_Projects/tree/main/Ai_resume_critiquer) |
-| AI Chatbot | AI-powered chatbot using OpenAI API | [GitHub](https://github.com/FarhanRana234/AI-Chatbot) |
+| AI Chatbot | AI-powered chatbot using OpenAI API | [GitHub](https://github.com/FarhanRana234/ML_and_AI_Projects/tree/main/AI_assistant_using_openAI_api) |
 | NLP Project | Text analysis and NLP models | [GitHub](https://github.com/FarhanRana234/NLP-Project) |
 | ML Algorithms | Supervised and unsupervised ML algorithms implemented | [GitHub](https://github.com/FarhanRana234/ML-Algorithms) |
 
