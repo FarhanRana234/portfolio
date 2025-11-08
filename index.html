@@ -178,6 +178,7 @@
     // Map repo names to images
     const repoImages = {
       "AI_Resume_Critiquer": "Ai_resume.PNG",
+      
       // Add more images for other repos here
     };
 
@@ -207,7 +208,7 @@
           const card = document.createElement('div');
           card.className = 'project-card bg-white dark:bg-gray-700';
           card.innerHTML = `
-            <img src="${repoImages[repo.name] || 'Ai_resume.PNG'}" alt="${repo.name} Screenshot">
+            <img src="${repoImages[repo.name] || 'https://via.placeholder.com/400x200'}" alt="${repo.name} Screenshot">
             <div class="p-6 text-gray-900 dark:text-gray-100">
               <h3 class="font-bold text-2xl mb-2">${repo.name}</h3>
               <p class="mb-4">${repo.description || 'No description provided.'}</p>
