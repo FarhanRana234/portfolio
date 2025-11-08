@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ darkMode: false, mobileMenu: false }" :class="darkMode ? 'dark' : ''">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farhan Rana | AI & ML Portfolio</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Alpine.js -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js" defer></script>
+
+  <!-- Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+
+    section.hero {
+      background: linear-gradient(135deg, #16a34a, #2563eb);
+      color: white;
+    }
+
+    .hero-button {
+      background: linear-gradient(90deg, #10b981, #3b82f6);
+      color: white;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .hero-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .project-card {
+      border-radius: 0.5rem;
+      overflow: hidden;
+      background-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .project-card:hover { 
+      transform: translateY(-5px) scale(1.02); 
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
+    .project-card img { width: 100%; height: 12rem; object-fit: cover; transition: transform 0.3s ease; }
+    .project-card:hover img { transform: scale(1.05); }
+
+    .project-link { color: #3b82f6; font-weight: 600; transition: color 0.3s; }
+    .project-link:hover { color: #10b981; text-decoration: underline; }
+
+    #typed-text { font-weight: 500; font-size: 1.25rem; }
+
+    footer a:hover { color: #10b981; }
+
+    @media (max-width: 768px) { .project-card img { height: 10rem; } }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-white dark:bg-gray-800 shadow fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="text-xl font-bold text-gray-900 dark:text-white">Farhan Rana</div>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="#about" class="text-gray-900 dark:text-gray-200 hover:text-green-500">About</a>
+        <a href="#skills" class="text-gray-900 dark:text-gray-200 hover:text-green-500">Skills</a>
+        <a href="#projects" class="text-gray-900 dark:text-gray-200 hover:text-green-500">Projects</a>
+        <a href="#contact" class="text-gray-900 dark:text-gray-200 hover:text-green-500">Contact</a>
+        <a href="https://github.com/FarhanRana234" target="_blank" class="text-gray-900 dark:text-gray-200 hover:text-green-500 font-semibold">GitHub</a>
+        <button @click="darkMode = !darkMode" class="ml-4 px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition">
+          <span x-text="darkMode ? 'Light' : 'Dark'"></span> Mode
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <div class="md:hidden flex items-center">
+        <button @click="mobileMenu = !mobileMenu" class="text-gray-700 dark:text-gray-200">
+          <svg x-show="!mobileMenu" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg x-show="mobileMenu" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div x-show="mobileMenu" x-transition class="md:hidden bg-white dark:bg-gray-800 px-4 pt-2 pb-4 space-y-2">
+      <a href="#about" class="block text-gray-900 dark:text-gray-200 hover:text-green-500">About</a>
+      <a href="#skills" class="block text-gray-900 dark:text-gray-200 hover:text-green-500">Skills</a>
+      <a href="#projects" class="block text-gray-900 dark:text-gray-200 hover:text-green-500">Projects</a>
+      <a href="#contact" class="block text-gray-900 dark:text-gray-200 hover:text-green-500">Contact</a>
+      <a href="https://github.com/FarhanRana234" target="_blank" class="block text-gray-900 dark:text-gray-200 hover:text-green-500 font-semibold">GitHub</a>
+      <button @click="darkMode = !darkMode" class="w-full mt-2 px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition">
+        <span x-text="darkMode ? 'Light' : 'Dark'"></span> Mode
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero h-screen flex flex-col justify-center items-center text-center">
+    <h1 class="text-5xl font-bold mb-4">Hi, I'm Farhan Rana</h1>
+    <p class="text-2xl mb-6">I build intelligent systems and AI tools</p>
+    <span id="typed-text" class="text-xl"></span>
+    <div class="mt-6">
+      <a href="#projects" class="hero-button px-6 py-3 rounded shadow">View Projects</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="max-w-5xl mx-auto px-4 py-20">
+    <h2 class="text-4xl font-bold mb-6 text-center">About Me</h2>
+    <p class="text-lg text-center text-gray-700 dark:text-gray-300">
+      I'm Farhan Rana, a passionate AI and Machine Learning enthusiast. I specialize in building intelligent systems, experimenting with NLP, computer vision, and leveraging APIs to create AI-powered applications.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="bg-gray-200 dark:bg-gray-800 py-20">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-10 text-center text-gray-900 dark:text-white">Skills</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
+        <div class="p-6 rounded shadow hover:scale-105 transition bg-white dark:bg-gray-700 text-gray-900 dark:text-white">Python</div>
+        <div class="p-6 rounded shadow hover:scale-105 transition bg-white dark:bg-gray-700 text-gray-900 dark:text-white">Scikit-Learn</div>
+        <div class="p-6 rounded shadow hover:scale-105 transition bg-white dark:bg-gray-700 text-gray-900 dark:text-white">TensorFlow / PyTorch</div>
+        <div class="p-6 rounded shadow hover:scale-105 transition bg-white dark:bg-gray-700 text-gray-900 dark:text-white">NLP & OpenAI API</div>
+        <div class="p-6 rounded shadow hover:scale-105 transition bg-white dark:bg-gray-700 text-gray-900 dark:text-white">Computer Vision</div>
+        <div class="p-6 rounded shadow hover:scale-105 transition bg-white dark:bg-gray-700 text-gray-900 dark:text-white">Git & Jupyter</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="max-w-5xl mx-auto px-4 py-20">
+    <h2 class="text-4xl font-bold mb-10 text-center text-gray-900 dark:text-white">Projects</h2>
+    <div id="github-projects" class="grid md:grid-cols-2 gap-8"></div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="bg-gray-200 dark:bg-gray-800 py-20">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-4xl font-bold mb-6 text-gray-900 dark:text-white">Contact Me</h2>
+      <p class="mb-6 text-gray-700 dark:text-gray-300">Feel free to reach out via GitHub, LinkedIn, Email, Instagram, or Indeed.</p>
+      <div class="flex flex-col md:flex-row justify-center gap-6 text-green-600 text-xl md:text-2xl">
+        <a href="https://github.com/FarhanRana234" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+        <a href="mailto:rana.tdm@gmail.com">Email</a>
+        <a href="https://instagram.com/farhan_.rana" target="_blank">Instagram</a>
+        <a href="https://www.indeed.com/rana.tdm@gmail.com/Farhan-Rana" target="_blank">Indeed</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-white dark:bg-gray-900 py-6 text-center text-gray-500 dark:text-gray-400">
+    © 2025 Farhan Rana | Built with ❤️ and AI
+  </footer>
+
+  <!-- Typed.js -->
+  <script>
+    new Typed('#typed-text', {
+      strings: ['Machine Learning', 'Artificial Intelligence', 'NLP', 'Computer Vision'],
+      typeSpeed: 50,
+      backSpeed: 50,
+      loop: true
+    });
+  </script>
+
+  <!-- GitHub Projects -->
+  <script>
+    const githubUser = 'FarhanRana234';
+    const container = document.getElementById('github-projects');
+
+    fetch(`https://api.github.com/users/${githubUser}/repos?sort=updated`)
+      .then(res => res.json())
+      .then(repos => {
+        repos.slice(0, 6).forEach(repo => {
+          const card = document.createElement('div');
+          card.className = 'project-card bg-white dark:bg-gray-700';
+          card.innerHTML = `
+            <div class="p-6 text-gray-900 dark:text-gray-100">
+              <h3 class="font-bold text-2xl mb-2">${repo.name}</h3>
+              <p class="mb-4">${repo.description || 'No description provided.'}</p>
+              <p class="mb-4 text-gray-500 dark:text-gray-300">⭐ ${repo.stargazers_count} | Forks: ${repo.forks_count}</p>
+              <a href="${repo.html_url}" target="_blank" class="project-link">View Repo</a>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(err => {
+        container.innerHTML = '<p class="text-center text-red-500">Failed to load projects.</p>';
+        console.error(err);
+      });
+  </script>
+
+</body>
+</html>
